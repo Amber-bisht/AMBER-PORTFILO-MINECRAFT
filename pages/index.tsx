@@ -91,7 +91,7 @@ const Home: React.FC<HomeProps> = ({ portfolioData }) => {
         {isDark && (
           <div className="fixed inset-0 pointer-events-none">
             {/* Moon */}
-            <div className="absolute top-20 right-20 w-16 h-16 bg-yellow-200 rounded-full opacity-80 shadow-lg shadow-yellow-200/50" />
+            <div className="absolute top-20 right-20 w-16 h-16 bg-yellow-200 border-2 border-yellow-300 opacity-80 shadow-lg shadow-yellow-200/50" style={{ borderRadius: '4px' }} />
             
             {/* Stars */}
             {[...Array(50)].map((_, i) => (
