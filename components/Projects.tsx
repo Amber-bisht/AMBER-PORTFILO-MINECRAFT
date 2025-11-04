@@ -104,13 +104,13 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   }, [isModalOpen, selectedProject]);
 
   const openMermaidModal = (project: Project) => {
-    playSound('/stone-effect-254998.mp3', 0.5);
+    playSound('/minecraft-click.mp3', 0.5);
     setSelectedProject(project);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    playSound('/stone-effect-254998.mp3', 0.5);
+    playSound('/minecraft-click.mp3', 0.5);
     setIsModalOpen(false);
     setSelectedProject(null);
   };
@@ -174,7 +174,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => playSound('/stone-effect-254998.mp3', 0.5)}
+              onClick={() => playSound('/minecraft-click.mp3', 0.5)}
               className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
             >
               <Github className="w-6 h-6 text-white" />
@@ -184,7 +184,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => playSound('/stone-effect-254998.mp3', 0.5)}
+                onClick={() => playSound('/minecraft-click.mp3', 0.5)}
                 className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
               >
                 <ExternalLink className="w-6 h-6 text-white" />
@@ -221,7 +221,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => playSound('/stone-effect-254998.mp3', 0.5)}
+            onClick={() => playSound('/minecraft-click.mp3', 0.5)}
             className={`${project.live || project['system architecture'] ? 'flex-1' : 'w-full max-w-xs'} flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
             style={{ borderRadius: '4px' }}
           >
@@ -233,7 +233,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => playSound('/stone-effect-254998.mp3', 0.5)}
+              onClick={() => playSound('/minecraft-click.mp3', 0.5)}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
               style={{ borderRadius: '4px' }}
             >
@@ -261,7 +261,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="pt-8 sm:pt-20 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}
@@ -288,7 +288,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             href="https://github.com/amber-bisht"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => playSound('/stone-effect-254998.mp3', 0.5)}
+            onClick={() => playSound('/minecraft-click.mp3', 0.5)}
             className={`inline-flex items-center gap-2 px-8 py-4 text-lg font-bold transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
             style={{ borderRadius: '4px', fontFamily: 'monospace' }}
           >

@@ -56,9 +56,6 @@ const Custom404 = () => {
         <meta name="description" content="Oops! The page you're looking for doesn't exist." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.cdnfonts.com/css/minercraftory" rel="stylesheet" />
       </Head>
 
       <div className={`min-h-screen relative ${isDark ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-slate-950' : 'bg-gradient-to-br from-blue-100 via-blue-50 to-cyan-100'}`}>
@@ -125,7 +122,7 @@ const Custom404 = () => {
                 {/* Mobile Menu Button */}
                 <button
                   onClick={() => {
-                    playSound('/stone-effect-254998.mp3', 0.5);
+                    playSound('/minecraft-click.mp3', 0.5);
                     setIsMenuOpen(!isMenuOpen);
                   }}
                   className={`md:hidden p-2 rounded-lg transition-colors ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-300' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}
@@ -146,7 +143,7 @@ const Custom404 = () => {
                       href={item.href}
                       className={`text-sm font-medium transition-colors hover:text-green-500 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}
                       onClick={() => {
-                        playSound('/stone-effect-254998.mp3', 0.5);
+                        playSound('/minecraft-click.mp3', 0.5);
                         setIsMenuOpen(false);
                       }}
                     >

@@ -42,14 +42,11 @@ export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   }, [soundEnabled, mounted]);
 
   const toggleSound = () => {
-    setSoundEnabled(!soundEnabled);
+    setSoundEnabled((prev) => !prev);
   };
 
-  // Prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
-
+  // Always render the Provider, even during SSR, to prevent context errors
+  // The context value will be updated once mounted and localStorage is read
   return (
     <SoundContext.Provider value={{ soundEnabled, setSoundEnabled, toggleSound }}>
       {children}

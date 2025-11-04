@@ -6,7 +6,6 @@ import { SiteHeader } from '../components/layout/site-header';
 import { SiteFooter } from '../components/layout/site-footer';
 import { useTheme } from '../contexts/ThemeContext';
 import { useEffect, useState } from 'react';
-import { ArrowDown, Code, Coffee, Heart } from 'lucide-react';
 import Projects from '../components/Projects';
 import Experience from '../components/Experience';
 import Contact from '../components/Contact';
@@ -14,6 +13,7 @@ import TechStack from '../components/TechStack';
 import MetaTags from '../components/SEO/MetaTags';
 import StructuredData from '../components/SEO/StructuredData';
 import { useSoundEffect } from '../hooks/useSoundEffect';
+import { Download } from 'lucide-react';
 
 interface PortfolioData {
   personal: {
@@ -147,38 +147,34 @@ const Home: React.FC<HomeProps> = ({ portfolioData }) => {
         
         <main className="flex-1">
           {/* Minecraft-Style Hero Section */}
-          <section className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-screen flex items-center justify-center py-4 sm:py-8 px-4">
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
+          <section className="relative min-h-[calc(100vh-120px)] sm:min-h-[calc(100vh-120px)] flex items-center justify-center py-4 sm:py-8 px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-2 sm:pb-12">
+            <div className="relative z-10 max-w-7xl mx-auto w-full">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-12">
+                {/* Left Side - Text Content */}
+                <div className="flex-1 text-left lg:ml-16 lg:pl-16 lg:pr-8 order-1 lg:order-none mt-8 sm:mt-10 md:mt-12">
               {/* Main Title - Minecraft Style */}
-              <div className="mb-4">
-                <h1 className={`text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black drop-shadow-2xl ${isDark ? 'text-white' : 'text-white'}`}
+                  <div className="mb-3 flex items-center justify-start gap-1 lg:gap-2 flex-nowrap">
+                    <h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black drop-shadow-2xl whitespace-nowrap ${isDark ? 'text-white' : 'text-white'}`}
                     style={{
-                      fontFamily: 'Roboto, sans-serif',
-                      textShadow: isDark ? '3px 3px 0px #000000, 6px 6px 0px #333333' : '3px 3px 0px #000000, 6px 6px 0px #333333',
-                      letterSpacing: '0.05em',
-                      fontWeight: '900',
-                      WebkitTextStroke: isDark ? 'none' : '3px #000000'
+                      fontFamily: '"Times New Roman", Times, serif',
+                      textShadow: isDark ? '0px 4px 20px rgba(0, 0, 0, 0.5), 0px 2px 8px rgba(0, 0, 0, 0.3)' : '0px 4px 20px rgba(0, 0, 0, 0.3), 0px 2px 8px rgba(0, 0, 0, 0.2)',
+                      letterSpacing: '0.02em',
+                      fontWeight: '700',
+                      WebkitTextStroke: 'none'
                     }}>
                   AMBER BISHT
               </h1>
-              </div>
-              
-              {/* Subtitle */}
-              <div className="mb-6 sm:mb-8">
-                <h2 className={`text-lg sm:text-xl md:text-3xl lg:text-4xl drop-shadow-lg ${isDark ? 'text-white' : 'text-white'}`}
-                    style={{
-                      fontFamily: 'Roboto, sans-serif',
-                      textShadow: isDark ? '2px 2px 0px #000000' : '2px 2px 0px #000000',
-                      fontWeight: '700',
-                      WebkitTextStroke: isDark ? 'none' : '2px #000000'
-                    }}>
-                  SOFTWARE DEVELOPER
-                </h2>
+                    <img 
+                      src="https://cdn-icons-png.flaticon.com/512/11423/11423254.png"
+                      alt="Sword"
+                      className="w-8 h-8 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain drop-shadow-lg flex-shrink-0"
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
               </div>
 
               {/* Description */}
-              <div className="mb-6 sm:mb-8">
-                <p className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}
+              <div className="mb-4 sm:mb-5 md:mb-6">
+                    <p className={`text-base sm:text-base md:text-lg lg:text-xl max-w-xs sm:max-w-md md:max-w-2xl leading-relaxed text-left ${isDark ? 'text-gray-300' : 'text-gray-700'}`}
                    style={{
                      fontFamily: 'Roboto, sans-serif',
                      fontWeight: '400'
@@ -187,49 +183,34 @@ const Home: React.FC<HomeProps> = ({ portfolioData }) => {
                 </p>
               </div>
 
-
-
-              {/* Minecraft-style Menu Buttons */}
-              <div className="space-y-3 sm:space-y-4">
-                {/* Level 1 - Tech Stack + Contact */}
-                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6">
-                  <button 
-                    onClick={() => {
-                      playSound('/stone-effect-254998.mp3', 0.5);
-                      scrollToSection('tech-stack');
-                    }}
-                    className={`flex items-center justify-center gap-2 px-4 sm:px-8 py-3 sm:py-4 w-full sm:w-64 text-base sm:text-xl font-bold transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
-                    style={{ borderRadius: '4px', fontFamily: 'monospace' }}>
-                    <Code className="w-3 h-3 sm:w-4 sm:h-4" />
-                    Tech Stack
-                  </button>
-                  <button 
-                    onClick={() => {
-                      playSound('/stone-effect-254998.mp3', 0.5);
-                      scrollToSection('contact');
-                    }}
-                    className={`flex items-center justify-center gap-2 px-4 sm:px-8 py-3 sm:py-4 w-full sm:w-64 text-base sm:text-xl font-bold transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
-                    style={{ borderRadius: '4px', fontFamily: 'monospace' }}>
-                    <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
-                    Contact
-                  </button>
+              {/* Download Resume Button */}
+              <div className="flex justify-center lg:justify-start mt-8 sm:mt-10 md:mt-12 mb-6 sm:mb-0">
+                <a
+                  href="https://drive.google.com/file/d/19zMENnr9VWC_zIm4cc2kh-NE4bBi_je7/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => playSound('/minecraft-click.mp3', 0.5)}
+                  className={`inline-flex items-center justify-center gap-2 px-6 py-3 text-base sm:text-lg font-bold transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
+                  style={{ borderRadius: '4px', fontFamily: 'monospace' }}
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                  Download Resume
+                </a>
+              </div>
                 </div>
                 
-                {/* Level 2 - Projects (Wide Button) */}
-                <div className="flex justify-center">
-                  <button 
-                    onClick={() => {
-                      playSound('/stone-effect-254998.mp3', 0.5);
-                      scrollToSection('projects');
-                    }}
-                    className={`flex items-center justify-center gap-2 px-4 sm:px-8 py-3 sm:py-4 w-full sm:w-[544px] text-base sm:text-xl font-bold transition-all duration-150 ${isDark ? 'bg-gray-600 border-2 border-t-gray-400 border-l-gray-400 border-r-gray-800 border-b-gray-800 text-white hover:bg-gray-500 active:border-t-gray-800 active:border-l-gray-800 active:border-r-gray-400 active:border-b-gray-400' : 'bg-gray-400 border-2 border-t-gray-200 border-l-gray-200 border-r-gray-600 border-b-gray-600 text-white hover:bg-gray-300 active:border-t-gray-600 active:border-l-gray-600 active:border-r-gray-200 active:border-b-gray-200'}`}
-                    style={{ borderRadius: '4px', fontFamily: 'monospace' }}>
-                    <Coffee className="w-3 h-3 sm:w-4 sm:h-4" />
-                    Projects
-                  </button>
+                {/* Right Side - Image */}
+                <div className="flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-none">
+                  <div className="relative">
+                    <img 
+                      src="https://minecraft.wiki/images/Bee_JE1.gif"
+                      alt="Minecraft Bee"
+                      className="w-full max-w-[200px] sm:max-w-[280px] md:max-w-md lg:max-w-lg h-auto object-contain drop-shadow-2xl"
+                      style={{ mixBlendMode: 'normal' }}
+                    />
+                  </div>
                 </div>
               </div>
-
             </div>
           </section>
 
