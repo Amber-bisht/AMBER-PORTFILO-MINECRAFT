@@ -229,9 +229,23 @@ jobs:
             fi
             echo ""
             
+            # Check if port 80 is already in use
+            echo "Checking if port 80 is available..."
+            if netstat -tuln 2>/dev/null | grep -q ':80 ' || ss -tuln 2>/dev/null | grep -q ':80 '; then
+              echo "⚠️  WARNING: Port 80 is already in use"
+              echo "Checking what's using port 80:"
+              netstat -tulpn 2>/dev/null | grep ':80 ' || ss -tulpn 2>/dev/null | grep ':80 ' || echo "Cannot determine"
+              echo ""
+              echo "Will try to stop any existing portfolio-app container first..."
+            else
+              echo "✅ Port 80 is available"
+            fi
+            echo ""
+            
             # Stop and remove old container if it exists
             echo "Stopping old container (if exists)..."
             if docker ps -a | grep -q portfolio-app; then
+              echo "Found existing container, stopping and removing..."
               docker stop portfolio-app 2>/dev/null || true
               docker rm portfolio-app 2>/dev/null || true
               echo "✅ Old container stopped and removed"
@@ -242,14 +256,15 @@ jobs:
             
             # Run new container
             echo "Starting new container..."
+            echo "Command: docker run -d --name portfolio-app -p 80:80 --restart unless-stopped \${IMAGE_NAME}:latest"
             if docker run -d \
               --name portfolio-app \
               -p 80:80 \
               --restart unless-stopped \
               "\${IMAGE_NAME}:latest"; then
-              echo "✅ Container started successfully"
+              echo "✅ Container created successfully"
             else
-              echo "❌ ERROR: Failed to start container"
+              echo "❌ ERROR: Failed to create container"
               echo ""
               echo "Checking container status..."
               docker ps -a | grep portfolio-app || echo "Container not found in list"
@@ -260,6 +275,33 @@ jobs:
               echo "Container logs (if any):"
               docker logs portfolio-app 2>&1 || echo "No logs available"
               exit 1
+            fi
+            echo ""
+            
+            # Wait a moment for container to start
+            echo "Waiting for container to start..."
+            sleep 3
+            
+            # Check container status
+            echo "Checking container status..."
+            CONTAINER_STATUS=\$(docker inspect portfolio-app --format='{{.State.Status}}' 2>/dev/null || echo "unknown")
+            echo "Container status: \${CONTAINER_STATUS}"
+            
+            # If container is created but not running, try to start it
+            if [ "\${CONTAINER_STATUS}" = "created" ]; then
+              echo "Container is in 'created' state, attempting to start it..."
+              if docker start portfolio-app; then
+                echo "✅ Container started manually"
+                sleep 2
+              else
+                echo "❌ ERROR: Failed to start container manually"
+                echo "Container logs:"
+                docker logs portfolio-app 2>&1 || echo "No logs available"
+                echo ""
+                echo "Checking port 80 again:"
+                netstat -tuln 2>/dev/null | grep ':80 ' || ss -tuln 2>/dev/null | grep ':80 ' || echo "Port check unavailable"
+                exit 1
+              fi
             fi
             echo ""
             
